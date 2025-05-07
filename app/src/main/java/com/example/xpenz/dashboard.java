@@ -6,36 +6,59 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class dashboard extends Fragment implements TransactionAdapter.OnTransactionClickListener {
+
     private TextView totalBalance;
     private TextView incomeAmount;
     private TextView expensesAmount;
     private RecyclerView transactionsRecyclerView;
     private TextView noTransactionsText;
     private TextView recentTransactionsTitle;
+    private MaterialButton logoutButton;
+
     private TransactionAdapter adapter;
     private TransactionManager transactionManager;
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        // Bind views
         totalBalance = view.findViewById(R.id.totalBalance);
         incomeAmount = view.findViewById(R.id.incomeAmount);
         expensesAmount = view.findViewById(R.id.expensesAmount);
         transactionsRecyclerView = view.findViewById(R.id.transactionsRecyclerView);
         noTransactionsText = view.findViewById(R.id.noTransactionsText);
         recentTransactionsTitle = view.findViewById(R.id.recentTransactionsTitle);
+        logoutButton = view.findViewById(R.id.logoutButton);
 
+        // Setup logout button
+        logoutButton.setOnClickListener(v -> {
+            mAuth.signOut();
+            Intent intent = new Intent(requireActivity(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            requireActivity().finish();
+        });
+
+        // Setup transaction adapter and recycler view
         transactionManager = new TransactionManager(requireContext());
         adapter = new TransactionAdapter(new ArrayList<>(), this);
-
         transactionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         transactionsRecyclerView.setAdapter(adapter);
 
@@ -70,9 +93,9 @@ public class dashboard extends Fragment implements TransactionAdapter.OnTransact
         noTransactionsText.setVisibility(View.VISIBLE);
         transactionsRecyclerView.setVisibility(View.GONE);
         recentTransactionsTitle.setVisibility(View.GONE);
-        totalBalance.setText("$0.00");
-        incomeAmount.setText("+$0.00");
-        expensesAmount.setText("-$0.00");
+        totalBalance.setText("₱0.00");
+        incomeAmount.setText("+₱0.00");
+        expensesAmount.setText("-₱0.00");
     }
 
     private void showTransactions(List<Transaction> transactions) {
