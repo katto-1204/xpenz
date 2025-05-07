@@ -6,37 +6,23 @@
     android:viewportHeight="108">
 
     <!-- Rounded Square Background -->
+
+    <!-- Display Area -->
     <path
-        android:pathData="M12,12 h84 a12,12 0 0 1 12,12 v60 a12,12 0 0 1 -12,12 h-84 a12,12 0 0 1 -12,-12 v-60 a12,12 0 0 1 12,-12 z"
+        android:pathData="M32,32 h44 a4,4 0 0 1 4,4 v36 a4,4 0 0 1 -4,4 h-44 a4,4 0 0 1 -4,-4 v-36 a4,4 0 0 1 4,-4 z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#1E88E5"
+        android:strokeWidth="0.5" />
+
+    <!-- Dollar Sign -->
+    <path
+        android:pathData="M46,42 v-3 h16 v3 h3 v4 h-22 v-4 h3
+                        M43,50 h22 v4 h-22 z
+                        M46,58 v4 h-3 v-4 h22 v4 h-3 v4 h-16 v-8"
         android:fillColor="#2196F3"
-        android:strokeColor="#0D47A1"
-        android:strokeWidth="3"
-        android:fillAlpha="0.92" />
+        android:strokeColor="#1E88E5"
+        android:strokeWidth="0.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
 
-    <!-- Wallet Body -->
-    <group android:translateX="27" android:translateY="34" android:scaleX="1.2" android:scaleY="1.2">
-
-        <!-- Main wallet shape -->
-        <path
-            android:pathData="M6,6 h36 a4,4 0 0 1 4,4 v20 a4,4 0 0 1 -4,4 h-36 a4,4 0 0 1 -4,-4 v-20 a4,4 0 0 1 4,-4 z"
-            android:fillColor="#FFFFFF"
-            android:strokeColor="#1E88E5"
-            android:strokeWidth="2"
-            android:strokeLineJoin="round" />
-
-        <!-- Flap -->
-        <path
-            android:pathData="M6,6 h28 a4,4 0 0 1 4,4 v4 h-32 z"
-            android:fillColor="#BBDEFB"
-            android:strokeColor="#1E88E5"
-            android:strokeWidth="2"
-            android:strokeLineJoin="round" />
-
-        <!-- Button circle on wallet -->
-        <path
-            android:pathData="M38,18 a2,2 0 1,0 0.1,0"
-            android:fillColor="#2196F3"
-            android:strokeColor="#0D47A1"
-            android:strokeWidth="1.5"/>
-    </group>
 </vector>

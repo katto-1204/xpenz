@@ -40,6 +40,11 @@ public class RegisterActivity extends AppCompatActivity {
             // TODO: Implement registration logic here
             // For now, just show a success message
             Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+
+            // Navigate to LoginActivity
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // Close RegisterActivity so the user can't go back to it
         });
 
         loginLink.setOnClickListener(v -> {
