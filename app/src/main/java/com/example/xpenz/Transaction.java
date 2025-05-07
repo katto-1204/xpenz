@@ -1,29 +1,65 @@
 package com.example.xpenz;
 
-public class Transaction {
+import java.io.Serializable;
+
+public class Transaction implements Serializable {
+    private int id;
     private String title;
-    private double amount;
     private String type;
-    private String tags;
+    private double amount;
     private String note;
     private String date;
-    private String time;
 
-    public Transaction(String title, double amount, String type, String tags, String note, String date, String time) {
+    public Transaction(int id, String title, String type, double amount, String note, String date) {
+        this.id = id;
         this.title = title;
-        this.amount = amount;
         this.type = type;
-        this.tags = tags;
+        this.amount = amount;
         this.note = note;
         this.date = date;
-        this.time = time;
     }
 
-    public String getTitle() { return title; }
-    public double getAmount() { return amount; }
-    public String getType() { return type; }
-    public String getTags() { return tags; }
-    public String getNote() { return note; }
-    public String getDate() { return date; }
-    public String getTime() { return time; }
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

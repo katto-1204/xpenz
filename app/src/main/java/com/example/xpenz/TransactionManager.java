@@ -1,41 +1,52 @@
 package com.example.xpenz;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionManager {
-    private static final String PREF_NAME = "TransactionPrefs";
-    private static final String KEY_TRANSACTIONS = "transactions";
-    private SharedPreferences preferences;
-    private Gson gson;
+    private static List<Transaction> transactions = new ArrayList<>();
+    private static int nextId = 1;
 
     public TransactionManager(Context context) {
-        preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        gson = new Gson();
+        // Constructor kept for compatibility
     }
 
     public void saveTransaction(Transaction transaction) {
-        List<Transaction> transactions = getTransactions();
-        transactions.add(0, transaction); // Add at beginning of list
-        saveTransactionList(transactions);
+        Transaction newTransaction = new Transaction(
+                nextId++,
+                transaction.getTitle(),
+                transaction.getType(),
+                transaction.getAmount(),
+                transaction.getNote(),
+                transaction.getDate()
+        );
+        transactions.add(0, newTransaction); // Add at beginning for recent first
     }
 
     public List<Transaction> getTransactions() {
-        String json = preferences.getString(KEY_TRANSACTIONS, "");
-        if (json.isEmpty()) {
-            return new ArrayList<>();
-        }
-        Type type = new TypeToken<List<Transaction>>(){}.getType();
-        return gson.fromJson(json, type);
+        return new ArrayList<>(transactions);
     }
 
-    private void saveTransactionList(List<Transaction> transactions) {
-        String json = gson.toJson(transactions);
-        preferences.edit().putString(KEY_TRANSACTIONS, json).apply();
+    public Transaction getTransaction(int id) {
+        for (Transaction transaction : transactions) {
+            if (transaction.getId() == id) {
+                return transaction;
+            }
+        }
+        return null;
+    }
+
+    public void deleteTransaction(int id) {
+        transactions.removeIf(transaction -> transaction.getId() == id);
+    }
+
+    public void updateTransaction(Transaction updatedTransaction) {
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getId() == updatedTransaction.getId()) {
+                transactions.set(i, updatedTransaction);
+                break;
+            }
+        }
     }
 }

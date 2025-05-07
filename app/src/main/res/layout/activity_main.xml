@@ -4,14 +4,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/blue"
+    android:backgroundTint="#3F51B5">
 
     <TextView
         android:id="@+id/titleXpenz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="XPENZ"
-        android:textColor="@color/blue"
+        android:textColor="#FFEB3B"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="An Expense Tracker"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,10 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="64dp"
-        android:background="@color/blue"
-        android:text="Get Started"
-        android:textColor="@color/white"
+        android:backgroundTint="#CCCCCC"
         android:padding="16dp"
+        android:text="Get Started"
+        android:textColor="@color/blue"
+        app:cornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

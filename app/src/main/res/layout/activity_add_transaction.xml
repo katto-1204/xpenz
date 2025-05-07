@@ -81,7 +81,8 @@
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Transaction"/>
+            android:backgroundTint="#1B228A"
+            android:text="Save Transaction" />
 
     </LinearLayout>
 </ScrollView>

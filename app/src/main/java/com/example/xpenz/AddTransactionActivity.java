@@ -45,7 +45,6 @@ public class AddTransactionActivity extends AppCompatActivity {
         String title = titleInput.getText().toString().trim();
         String amountStr = amountInput.getText().toString().trim();
         String type = typeDropdown.getText().toString();
-        String tags = tagsInput.getText().toString().trim();
         String note = noteInput.getText().toString().trim();
 
         if (title.isEmpty() || amountStr.isEmpty() || type.isEmpty()) {
@@ -61,14 +60,16 @@ public class AddTransactionActivity extends AppCompatActivity {
             return;
         }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.getDefault());
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mma", Locale.getDefault());
-        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy h:mma", Locale.getDefault());
+        String dateTime = dateFormat.format(new Date());
 
         Transaction transaction = new Transaction(
-                title, amount, type, tags, note,
-                dateFormat.format(now),
-                timeFormat.format(now)
+                0,
+                title,
+                type,
+                amount,
+                note,
+                dateTime
         );
 
         transactionManager.saveTransaction(transaction);
